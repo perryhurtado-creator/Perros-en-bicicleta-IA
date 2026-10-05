@@ -1,0 +1,268 @@
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background: #0a0a0b;
+  color: #f5f5f5;
+  font-family: var(--font-ohf-inter), Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+a { color: inherit; text-decoration: none; }
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, rgba(209, 254, 23, 0.08), transparent 35%), #0a0a0b;
+}
+
+.ohf {
+  min-height: 100vh;
+  background: #0a0a0b;
+  color: #f5f5f5;
+}
+
+.ohf-shell {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+}
+
+.ohf-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.ohf-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ohf-brand-mark {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #d1fe17, #98b90d);
+  box-shadow: 0 0 0 5px rgba(209, 254, 23, 0.18);
+}
+
+.ohf-brand-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.ohf-brand-subtitle {
+  color: #a8aeaf;
+  font-size: 0.82rem;
+}
+
+.ohf-top-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.ohf-pill {
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.02);
+  color: #f5f5f5;
+  border-radius: 999px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.ohf-pill--accent {
+  border-color: rgba(209,254,23,0.3);
+  background: rgba(209,254,23,0.08);
+  color: #d1fe17;
+}
+
+.ohf-composer {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.ohf-surface-toggle {
+  display: inline-flex;
+  width: fit-content;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.02);
+  border-radius: 12px;
+  padding: 4px;
+}
+
+.ohf-surface-toggle button {
+  border: 0;
+  background: transparent;
+  color: #d5d5d7;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.ohf-surface-toggle .is-selected {
+  background: rgba(209,254,23,0.14);
+  color: #d1fe17;
+}
+
+.ohf-composer-box {
+  padding: 18px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.02);
+  border-radius: 20px;
+}
+
+.ohf-composer-box textarea {
+  width: 100%;
+  min-height: 140px;
+  resize: vertical;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(10,10,11,0.7);
+  color: #f5f5f5;
+  border-radius: 14px;
+  padding: 16px;
+  font: inherit;
+}
+
+.ohf-composer-actions {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.ohf-btn-solid,
+.ohf-btn-quiet,
+.ohf-input {
+  border-radius: 10px;
+  font: inherit;
+}
+
+.ohf-btn-solid {
+  background: #d1fe17;
+  color: #111;
+  border: 0;
+  padding: 10px 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ohf-btn-quiet {
+  background: rgba(255,255,255,0.03);
+  color: #f5f5f5;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.ohf-panel-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 16px;
+}
+
+.ohf-panel {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 18px;
+}
+
+.ohf-panel-head {
+  margin-bottom: 14px;
+}
+
+.ohf-panel-head h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.ohf-input {
+  width: 100%;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(10,10,11,0.7);
+  color: #f5f5f5;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+}
+
+.ohf-model-list {
+  display: grid;
+  gap: 8px;
+}
+
+.ohf-model-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.01);
+  color: #f5f5f5;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.ohf-model-row.is-active {
+  border-color: rgba(209,254,23,0.3);
+  background: rgba(209,254,23,0.08);
+}
+
+.ohf-model-row strong,
+.ohf-model-row small {
+  display: block;
+}
+
+.ohf-model-row small {
+  color: #a8aeaf;
+  font-size: 0.72rem;
+}
+
+.ohf-model-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 8px;
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(209,254,23,0.85), rgba(255,255,255,0.14));
+}
+
+.ohf-model-swatch.large {
+  width: 32px;
+  height: 32px;
+}
+
+.ohf-model-card {
+  display: grid;
+  gap: 12px;
+}
+
+.ohf-model-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ohf-kv {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  color: #a8aeaf;
+}
+
+.ohf-kv strong {
+  color: #f5f5f5;
+}
+
+@media (max-width: 760px) {
+  .ohf-panel-grid {
+    grid-template-columns: 1fr;
+  }
+}
