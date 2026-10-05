@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="OpenHiggsfield AI">
+  <rect width="128" height="128" fill="#0a0a0b" rx="20"/>
+  <path d="M28 30h72v16H28zM28 54h72v16H28zm0 24h72v16H28zM28 78h72v16H28z" fill="#d1fe17"/>
+  <circle cx="96" cy="92" r="14" fill="#d1fe17"/>
+</svg>

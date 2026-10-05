@@ -1,0 +1,11 @@
+allowBuilds:
+  esbuild: true
+  lightningcss: true
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+minimumReleaseAgeExclude:
+  - "@rollup/*"
+  - rollup
+  - next
+  - "@next/*"
