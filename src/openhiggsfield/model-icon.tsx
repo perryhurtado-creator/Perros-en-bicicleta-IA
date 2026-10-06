@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 
+/** Brand file in /public/model-icons, or nothing if the pack has no match. */
 export function modelIconFile(id: string): string | undefined {
   if (id.startsWith("kling")) return "kling";
   if (id.startsWith("wan")) return "wan";
@@ -22,8 +23,28 @@ export function modelIconSrc(id: string): string | undefined {
   return file ? `/model-icons/${file}.svg` : undefined;
 }
 
-export function ModelIcon({ modelId, size = 16, className = "ohf-model-icon" }: { modelId: string; size?: number; className?: string }) {
+export function ModelIcon({
+  modelId,
+  size = 16,
+  className = "ohf-model-icon",
+}: {
+  modelId: string;
+  size?: number;
+  className?: string;
+}) {
   const src = modelIconSrc(modelId);
   if (!src) return null;
-  return <span className={className} aria-hidden style={{ width: size, height: size, ["--ohf-model-icon" as string]: `url("${src}")` } as CSSProperties} />;
+  return (
+    <span
+      className={className}
+      aria-hidden
+      style={
+        {
+          width: size,
+          height: size,
+          "--ohf-model-icon": `url("${src}")`,
+        } as CSSProperties
+      }
+    />
+  );
 }
