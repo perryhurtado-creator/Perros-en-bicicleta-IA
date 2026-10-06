@@ -1,10 +1,9 @@
 import type { MetadataRoute } from "next";
 
+import { SITE_URL } from "@/site";
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: "http://localhost:3000",
-      lastModified: new Date(),
-    },
-  ];
+  const lastModified = new Date();
+
+  return [{ url: `${SITE_URL}/`, lastModified, changeFrequency: "weekly", priority: 1 }];
 }
