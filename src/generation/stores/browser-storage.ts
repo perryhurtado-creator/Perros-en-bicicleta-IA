@@ -1,5 +1,7 @@
 import { type PersistStorage, type StorageValue } from "zustand/middleware";
 
+/** Per-call localStorage so persist still works after SSR, where the store
+    module evaluates before a Storage exists. */
 export function browserStorage<T>(): PersistStorage<T> {
   return {
     getItem: (name) => {
@@ -11,8 +13,12 @@ export function browserStorage<T>(): PersistStorage<T> {
         return null;
       }
     },
-    setItem: (name, value) => write(name, JSON.stringify(value)),
-    removeItem: (name) => write(name, null),
+    setItem: (name, value) => {
+      write(name, JSON.stringify(value));
+    },
+    removeItem: (name) => {
+      write(name, null);
+    },
   };
 }
 
@@ -31,6 +37,6 @@ function write(name: string, value: string | null): void {
     if (value === null) localStorage.removeItem(name);
     else localStorage.setItem(name, value);
   } catch {
-    // ignore quota/private mode failures
+    /* quota, private mode, or a denied store */
   }
 }
