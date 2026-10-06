@@ -1,29 +1,28 @@
-import { getModel } from "./catalog";
-
-export type GenerationPlane = {
-  model: string;
-  prompt: { text: string };
-  media: Record<string, Array<{ id: string; url: string; role: string }>>;
-  settings: Record<string, unknown>;
-};
+import { getModel, parseSettings } from "./catalog";
+import type { GenerationPlane } from "./catalog/types";
+import { useActive } from "./stores/active";
+import { useImageMedia, useVideoMedia } from "./stores/media";
+import { useImagePrompt, useVideoPrompt } from "./stores/prompt";
+import { useSettings } from "./stores/settings";
 
 export function assemblePlane(): GenerationPlane {
-  const active = useActive.getState();
-  const model = getModel(active.model);
-  const text = active.surface === "image" ? useImagePrompt.getState().text : useVideoPrompt.getState().text;
-  const items = active.surface === "image" ? useImageMedia.getState().items : useVideoMedia.getState().items;
-  const media: Record<string, Array<{ id: string; url: string; role: string }>> = {};
+  const { model: modelId, surface } = useActive.getState();
+  const model = getModel(modelId);
+  const text = (surface === "image" ? useImagePrompt : useVideoPrompt).getState().text;
+  const items = (surface === "image" ? useImageMedia : useVideoMedia).getState().items;
+  const media: GenerationPlane["media"] = {};
   for (const item of items) {
-    const max = model.roles[item.role as keyof typeof model.roles];
+    const max = model.roles[item.role];
     if (!max) continue;
     const list = media[item.role] ?? [];
     if (list.length >= max) continue;
     list.push(item);
     media[item.role] = list;
   }
-  return { model: model.id, prompt: { text }, media, settings: model.settings };
+  return {
+    model: model.id,
+    prompt: { text },
+    media,
+    settings: parseSettings(model, useSettings.getState().byModel[model.id] ?? {}),
+  };
 }
-
-import { useActive } from "./stores/active";
-import { useImageMedia, useVideoMedia } from "./stores/media";
-import { useImagePrompt, useVideoPrompt } from "./stores/prompt";
