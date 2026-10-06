@@ -1,11 +1,12 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+import type { MediaItem } from "../catalog/types";
 import { browserStorage } from "./browser-storage";
 
 type MediaState = {
-  items: Array<{ id: string; url: string; role: string }>;
-  add: (item: { id: string; url: string; role: string }) => void;
+  items: MediaItem[];
+  add: (item: MediaItem) => void;
   remove: (id: string) => void;
 };
 
@@ -20,7 +21,9 @@ function createMediaStore(name: string) {
       {
         name,
         storage: browserStorage(),
-        partialize: (state) => ({ items: state.items.filter((item) => !item.url.startsWith("blob:")) }),
+        partialize: (state) => ({
+          items: state.items.filter((item) => !item.url.startsWith("blob:")),
+        }),
       },
     ),
   );
